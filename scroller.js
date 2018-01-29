@@ -11,11 +11,15 @@ var imageRepository = new function() {
 	// Define images
 	this.empty = null;
 	this.background = new Image();
-	this.car = new Image();
+    this.car = new Image();
+    this.apple = new Image();
+    this.orange = new Image();
 	
 	// Set images src
-	this.background.src = "road.jpg";
-	this.car.src = "car.png";
+	this.background.src = "super_market2.png";
+    this.car.src = "shopping_cart_200.png";
+    this.apple.src = "apple.png";
+    this.orange.src = "orange.png";
 }
 
 function Drawable() {	
@@ -47,6 +51,10 @@ function Background() {
 		// redraw road when it's off the screen
 		this.context.drawImage(imageRepository.background, this.x, this.y - this.canvasHeight);
         this.context.drawImage(imageRepository.car, car.x, car.y);
+
+        //this is hacky and should be moved somewhere else also shouldn't use this.y just here for example
+        this.context.drawImage(imageRepository.apple, 100, this.y);
+        this.context.drawImage(imageRepository.orange, 400, this.y + 250);
 
 		// If the image scrolled off the screen, reset
 		if (this.y >= this.canvasHeight)
@@ -130,7 +138,7 @@ function update(speedX){
     //right
     if(39 in keysDown){
         console.log("right");
-        if (car.x + 100 + speedX < 800) {
+        if (car.x + 200 + speedX < 800) {
             car.x += speedX;
         }
         else {
